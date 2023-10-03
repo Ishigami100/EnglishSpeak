@@ -50,6 +50,12 @@ docker-compose exec web bash
 
 
 
+アプリへのアクセスは起動後
+
+```
+http://localhost:3000/
+```
+
 ## dbの更新
 
 ```
