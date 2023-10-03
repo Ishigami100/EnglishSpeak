@@ -103,7 +103,15 @@ db:migrate
 
 Swagger-ui,rswag,rspecを導入済み。
 
-使うための用意を行う。
+下記コマンドでswagger.yml を生成。SPecを直しこのコマンドを打つことで、swagger.yml が更新される
+
+```
+RAILS_ENV=test rake rswag:specs:swaggerize
+```
+
+
+
+※もしうまくいかない場合は、下記コマンドで初期化を行う。
 
 ```
 bundle install
@@ -116,14 +124,6 @@ bundle exec rails g rswag:api:install
 bundle exec rails g rswag:ui:install
 bundle exec rails generate rspec:install
 RAILS_ENV=test bundle exec rails g rswag:specs:install
-```
-
-
-
-下記コマンドでswagger.yml を生成。SPecを直しこのコマンドを打つことで、swagger.yml が更新される
-
-```
-RAILS_ENV=test rake rswag:specs:swaggerize
 ```
 
 
