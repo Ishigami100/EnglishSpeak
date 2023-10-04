@@ -79,7 +79,7 @@ docker compose exec front bash
 ②中に入った後必要モジュールのインストール(初回のみ)
 
 ```
-npm install typescript ts-node
+npm install --save-dev typescript return
 ```
 
 ③npmを起動
