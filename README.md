@@ -32,35 +32,65 @@ docker-compose build
  docker-compose up -d
 ```
 
+※②③は下記コマンドにまとめられる
+
+```
+docker compose up -d --build
+```
+
 ④データベースを作成する
 
 ```
-docker-compose run web rails db:create
+docker-compose run backend rails db:create
+```
+
+追記：No such file entrypoint.shが出た場合
+
+Windowsの設定でLFからCRLFに変換されてしまうらしいので、こちらのコマンドで変更後うまくいきます。
+
+```
+git config --global core.autocrlf input
+```
+
+## アプリの起動
+
+**Backend**
+
+Railsのバックエンド側は下記アドレスで入れる
+
+```
+http://localhost:3001
+```
+
+Swagger-uiは下記のアドレスで入れる
+
+```
+http://localhost:3001/api-docs
+```
+
+**Frontend**
+
+①コンテナの中へ下記コマンドで入る
+
+```
+docker compose exec front bash
+```
+
+②中に入った後必要モジュールのインストール(初回のみ)
+
+```
+npm install typescript ts-node
+```
+
+③npmを起動
+
+```
+npm start
 ```
 
 
 
-## アプリについて（途中）
-
-コンテナの中へは下記コマンドで入る
-
-```
-docker-compose exec web bash
-```
-
-アプリへのアクセスは起動後
-
-```
-
-```
-
-
-
-アプリの再起動は、下記手順で行う。
-
-
-
-**再起動手順**
+**再起動**
 
 ①作業フォルダへ移動する
 
