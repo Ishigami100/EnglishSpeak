@@ -163,7 +163,7 @@ RAILS_ENV=test bundle exec rails g rswag:specs:install
 RSpecを実行するために、中に入る
 
 ```
-docker-compose exec web bash
+docker-compose exec backend bash
 ```
 
 RSpecを実施
