@@ -17,7 +17,7 @@ https://docs.docker.jp/docker-for-windows/install.html
 ①作業フォルダへ移動する
 
 ```
-cd ./EnglishSpeak/backend
+cd ./EnglishSpeak
 ```
 
 ②dockerでビルドを行う
@@ -51,7 +51,7 @@ docker-compose exec web bash
 アプリへのアクセスは起動後
 
 ```
-http://localhost:3000/
+
 ```
 
 
@@ -65,7 +65,7 @@ http://localhost:3000/
 ①作業フォルダへ移動する
 
 ```
-cd ./EnglishSpeak/backend
+cd ./EnglishSpeak
 ```
 
 ②dockerでビルドを行う
