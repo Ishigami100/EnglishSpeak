@@ -1,0 +1,2 @@
+class ConversationHistory < ApplicationRecord
+end
