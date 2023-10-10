@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'csv'
+
+CSV.foreach('db/ejdict.csv',quote_char: "\x00", force_quotes: true) do |row|
+    p row[0];
+    p row[1];
+    Word.create(:word => row[0], :mean => row[1])
+end
