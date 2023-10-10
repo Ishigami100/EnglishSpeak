@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_150415) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_09_154330) do
+  create_table "conversation_histories", charset: "utf8mb4", force: :cascade do |t|
+    t.string "username"
+    t.text "context"
+    t.integer "conversation_times"
+    t.boolean "gpt_flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_words", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "word_number"
+    t.string "username"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+    t.integer "times"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "words", charset: "utf8mb4", force: :cascade do |t|
     t.string "word"
-    t.string "mean"
+    t.text "mean", size: :long
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
