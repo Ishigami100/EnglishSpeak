@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :todos, only: [:index]
     end
+      resources :words, param: :word, only: [:show, :create]
+      resources :userwords, only: [:show, :create]
   end
 
 end
