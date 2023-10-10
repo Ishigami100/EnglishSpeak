@@ -64,6 +64,8 @@ http://localhost:3001
 
 Swagger-uiは下記のアドレスで入れる
 
+ここに実装済みのAPIについては説明を入れました。
+
 ```
 http://localhost:3001/api-docs
 ```
@@ -90,39 +92,24 @@ npm start
 
 
 
-**再起動**
-
-①作業フォルダへ移動する
-
-```
-cd ./EnglishSpeak
-```
-
-②dockerでビルドを行う
-
-```
-docker-compose build
-```
-
-③コンテナを起動する（-dは デタッチド・モード: バックグラウンドでコンテナを実行し、新しいコンテナ名を表示する）
-
-```
- docker-compose up -d
-```
-
-
-
 ## dbの初期化
 
 アプリを起動するためにdbを構成する
 
 ```
 docker-compose exec backend bash #bashに入る
-rails db:migrate
+もしくは
+docker desktopのbackendコンテナからCLIに入る
+
+rails db:migrate:reset
 rails db:seed
 ```
 
-これにより辞書データの挿入も行われる。
+これにより初期データの挿入が行われる。
+
+
+
+ここから下は時間があった場合に実装を行う。
 
 ## テストについて
 

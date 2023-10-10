@@ -1,2 +1,3 @@
 class UserWord < ApplicationRecord
+   
 end

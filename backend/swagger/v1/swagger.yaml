@@ -4,9 +4,10 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/v1/todos":
+  /api/v1/todos:
     get:
       summary: get todo list
+      description: "お試しAPI"
       responses:
         '200':
           description: todo list
@@ -24,8 +25,94 @@ paths:
                   required:
                   - name
                   - done
+  /api/words/{word}:
+    get:
+      summary: get word
+      description: "引数の単語から単語の意味を返すAPI"
+      parameters:
+        - name: "word"
+          in: "path"
+          description: "取得したい単語"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: word meaning
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "integer"
+                    format: "int64"
+                  word:
+                    type: "string"
+                  mean:
+                    type: "string"
+  /api/conversations/{userid}:
+      get:
+        summary: get  conversations history
+        description: "userに紐づく、userの会話履歴を取得するAPI"
+        parameters:
+          - name: "userid"
+            in: "path"
+            description: "取得したいuserのID"
+            required: true
+            schema:
+              type: "integer"
+              format: "int64"
+        responses:
+          '200':
+            description: conversations history
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int64"
+                      context:
+                        type: "string"
+                      conversation_times:
+                        type: "integer"
+                        format: "int64"
+                      gpt_flag:
+                        type: boolean
+  /api/userwords/{userid}:
+      get:
+        summary: get userword list
+        description: "userが登録した単語帳データを取得するAPI"
+        parameters:
+          - name: "userid"
+            in: "path"
+            description: "取得したいuserのID"
+            required: true
+            schema:
+              type: "integer"
+              format: "int64"
+        responses:
+          '200':
+            description: userword list
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int64"
+                      word_number:
+                        type: "integer"
+                        format: "int64"
+                      count:
+                        type: "integer"
+                        format: "int64"
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+  - url: http://localhost:3001
