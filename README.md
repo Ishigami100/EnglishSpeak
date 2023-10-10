@@ -112,22 +112,17 @@ docker-compose build
 
 
 
-## dbの更新
+## dbの初期化
 
-dbの更新はdbの構成変更後に、下記コマンドをどちらか打つことで解決。
-
-```
-docker-compose run web rails　 db:migrate
-```
-
-or
+アプリを起動するためにdbを構成する
 
 ```
-docker-compose exec web bash #bashに入る
-db:migrate
+docker-compose exec backend bash #bashに入る
+rails db:migrate
+rails db:seed
 ```
 
-
+これにより辞書データの挿入も行われる。
 
 ## テストについて
 
