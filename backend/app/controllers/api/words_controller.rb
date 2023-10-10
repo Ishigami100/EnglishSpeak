@@ -4,7 +4,7 @@ class Api::WordsController < ApplicationController
     end
 
     def show
-        word=Word.find_by(word:params[:word])
+        word=Word.select(:id, :word, :mean).find_by(word:params[:word])
         render json: word
     end
 
