@@ -51,6 +51,23 @@ paths:
                     type: "string"
                   mean:
                     type: "string"
+  /api/words:
+      post:
+        summary: post word
+        description: "取得した単語を登録する関数"
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  word:
+                    type: "string"
+                    example: "piyopiyo"
+        responses:
+          '201':
+            description: word meaning
   /api/conversations/{userid}:
       get:
         summary: get  conversations history
@@ -83,6 +100,41 @@ paths:
                         format: "int64"
                       gpt_flag:
                         type: boolean
+  /api/conversations:
+      post:
+        summary: conversations post
+        description: "取得した会話を登録し、その応答結果を返す関数"
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  userid:
+                    type: "integer"
+                    example: "1"
+                  context:
+                    type: "string"
+                    example: "piyopiyo"
+        responses:
+          '201':
+            description: conversations
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: "integer"
+                      format: "int64"
+                    context:
+                      type: "string"
+                    conversation_times:
+                      type: "integer"
+                      format: "int64"
+                    gpt_flag:
+                      type: boolean
   /api/userwords/{userid}:
       get:
         summary: get userword list
