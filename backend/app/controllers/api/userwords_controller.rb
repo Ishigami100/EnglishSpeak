@@ -1,4 +1,5 @@
 class Api::UserwordsController < ApplicationController
+    skip_before_action :verify_authenticity_token
     def show
         userwords=UserWord.where(userid:params[:id])
         render json: userwords
@@ -9,6 +10,6 @@ class Api::UserwordsController < ApplicationController
         if word
             return # 該当するレコードが既に存在する場合
         end
-        UserWord.create(word_number: params["word_number"],userid:params["userid"],count:0)
+        UserWord.create(word_number: params["word_number"],userid: params["userid"],count: 0)
     end
 end
