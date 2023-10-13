@@ -149,15 +149,20 @@ paths:
                   items:
                     type: object
                     properties:
-                      id:
-                        type: "integer"
-                        format: "int64"
-                      word_number:
-                        type: "integer"
-                        format: "int64"
-                      count:
-                        type: "integer"
-                        format: "int64"
+                      userword:
+                        type: object
+                        properties:
+                          id:
+                            type: "integer"
+                            format: "int64"
+                          word_number:
+                            type: "integer"
+                            format: "int64"
+                          count:
+                            type: "integer"
+                            format: "int64"
+                      word:
+                        type: "string"
 servers:
   - url: http://localhost:3001
   - url: http://107.22.211.32:3001/
