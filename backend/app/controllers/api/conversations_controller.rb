@@ -1,4 +1,5 @@
 class Api::ConversationsController < ApplicationController
+    skip_before_action :verify_authenticity_token
     def show
         conversations=ConversationHistory.select(:id, :context, :conversation_times, :gpt_flag).where(userid:params[:id]);
         render json: conversations

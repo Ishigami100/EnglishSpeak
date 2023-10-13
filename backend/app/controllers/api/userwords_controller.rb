@@ -1,4 +1,5 @@
 class Api::UserwordsController < ApplicationController
+    skip_before_action :verify_authenticity_token
     def show
         userwords=UserWord.where(userid:params[:id])
         render json: userwords
