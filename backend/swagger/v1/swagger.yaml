@@ -160,3 +160,4 @@ paths:
                         format: "int64"
 servers:
   - url: http://localhost:3001
+  - url: http://107.22.211.32:3001/
