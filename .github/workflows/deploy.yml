@@ -18,4 +18,6 @@ jobs:
         run: |
           echo "${{ secrets.PRIVATE_KEY }}" > private_key
           chmod 600 private_key
-          ssh  ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd EnglishSpeak && git pull origin main"
+          ssh -i private_key ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} 
+          cd EnglishSpeak
+          git pull origin main
