@@ -12,4 +12,9 @@ CSV.foreach('db/ejdict.csv',quote_char: "\x00", force_quotes: true) do |row|
     Word.create(:word => row[0], :mean => row[1])
 end
 
-User.create(username:"aaa",password:"password",session_times:1)
+User.create(username:"aaa",password:"password",session_times:0)
+User.create(username:"yamada",password:"password",session_times:0)
+User.create(username:"fukuda",password:"password",session_times:0)
+User.create(username:"ezure",password:"password",session_times:0)
+User.create(username:"sample ",password:"password",session_times:0)
+User.create(username:"engineer",password:"password",session_times:0)
