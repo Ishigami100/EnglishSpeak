@@ -8,9 +8,7 @@ class Api::WordsController < ApplicationController
         end
         data = translate(word:params["word"])
         if data.present?
-            p data
             Word.create(word: params["word"], mean: data)
-            p "aaa"
         else
             # dataが空の場合のエラーハンドリングを追加
             p "エラー: データの翻訳に失敗しました"
