@@ -14,9 +14,8 @@ jobs:
    steps:
 
      # デプロイする
-     - name: Deploy
-       run: |
-         # SSH接続して、git pullする
-         echo "${{ secrets.PRIVATE_KEY }}" > private_key
-         chmod 600 private_key
-          ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd EnglishSpeak && git pull origin main "
+      - name: Deploy
+        run: |
+          echo "${{ secrets.PRIVATE_KEY }}" > private_key
+          chmod 600 private_key
+          ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd EnglishSpeak && git pull origin main"
