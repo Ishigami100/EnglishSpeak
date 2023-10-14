@@ -4,13 +4,14 @@ class Api::UserwordsController < ApplicationController
         userwords = UserWord.select(:id,:word_number,:count).where(userid: params[:id])
 
         userword_objects = userwords.map do |userword|
-        word = Word.select(:word).find_by(id: userword.id).word
+        word = Word.select(:word).find_by(id: userword.word_number)
+        p word.word
         # Create a new object with the original userword attributes and the additional word attribute
         {
             userword: userword,
-            word: word
+            word: word.word
         }
-          end
+        end
         render json: userword_objects
     end
 
