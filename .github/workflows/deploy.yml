@@ -8,16 +8,20 @@ on:
  
 #実行される処理
 jobs:
- build:
-   # 実行環境の指定
-   runs-on: ubuntu-latest
-   steps:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-     # デプロイする
-      - name: Deploy
+      - name: Setup SSH
         run: |
           echo "${{ secrets.PRIVATE_KEY }}" > private_key
           chmod 600 private_key
-          ssh -i private_key ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} 
-          cd EnglishSpeak
-          git pull origin main
+          scp -i private_key -o StrictHostKeyChecking=no private_key ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }}:~/.ssh/id_rsa
+          ssh -i private_key -o StrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }}
+        shell: bash
+
+      - name: Deploy code
+        run: |
+          ssh -i ~/.ssh/id_rsa ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} "cd EnglishSpeak && git pull origin main"
