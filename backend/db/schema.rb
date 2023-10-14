@@ -14,6 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_154330) do
   create_table "conversation_histories", charset: "utf8mb4", force: :cascade do |t|
     t.integer "userid"
     t.text "context"
+    t.integer "session_times"
     t.integer "conversation_times"
     t.boolean "gpt_flag"
     t.datetime "created_at", null: false
@@ -31,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_154330) do
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "username"
     t.string "password"
-    t.integer "times"
+    t.integer "session_times"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
