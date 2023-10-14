@@ -42,9 +42,12 @@ paths:
           content:
             application/json:
               schema:
-                id:
-                  type: "integer"
-                  format: "int64"
+                schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "integer"
+                    format: "int64"
   /api/users/session/{username}:
     get:
       summary: get session_times
@@ -62,9 +65,11 @@ paths:
           content:
             application/json:
               schema:
-                session_times:
-                  type: "integer"
-                  format: "int64"
+                type: "object"
+                properties:
+                  session_times:
+                    type: "integer"
+                    format: "int64"
   /api/words/{word}:
     get:
       summary: get word
@@ -249,5 +254,5 @@ paths:
                       word:
                         type: "string"
 servers:
-  - url: http://localhost:3001
-  - url: http://107.22.211.32:3001/
+  - url: http://localhost:80
+  - url: http://107.22.211.32:80/
