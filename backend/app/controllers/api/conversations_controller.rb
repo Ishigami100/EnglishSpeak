@@ -2,7 +2,8 @@
 class Api::ConversationsController < ApplicationController
     skip_before_action :verify_authenticity_token
     def show
-        conversations=ConversationHistory.select(:id, :context, :conversation_times, :gpt_flag).where(userid:params[:id]);
+        conversations=ConversationHistory.select(:id, :context, :conversation_times, :gpt_flag).where(userid:params[:userid]);
+        p conversations
         render json: conversations
     end
 
@@ -81,5 +82,10 @@ class Api::ConversationsController < ApplicationController
                 UserWord.create(word_number:id.id,userid: params["userid"],count: 1)
             end
         end
+    end
+
+    def session_get
+        conversations=ConversationHistory.select(:id, :context, :conversation_times,:session_times, :gpt_flag).where(userid:params[:userid]).where(session_times:params[:session_times]);
+        render json: conversations
     end
 end
