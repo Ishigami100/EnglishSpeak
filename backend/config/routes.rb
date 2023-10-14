@@ -10,10 +10,15 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :todos, only: [:index]
     end
-      resources :words, param: :word, only: [:show, :create]
-      resources :userwords, only: [:show, :create]
-      resources :conversations, only: [:show, :create]
-      resources :users, only: [:create]
+    resources :words, param: :word, only: [:show, :create]
+    resources :userwords, only: [:show, :create]
+    resources :conversations, only: [:show, :create], param: :userid do
+      member do
+        get ':session_times', to: 'conversations#session_get', as: :session
+      end
+    end
+    resources :users,param: :username, only: [:create,:show] 
+    get 'users/session/:username', to: 'users#show_session'
   end
 
 end

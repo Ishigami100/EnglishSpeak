@@ -25,6 +25,46 @@ paths:
                   required:
                   - name
                   - done
+  /api/users/{username}:
+    get:
+      summary: get userId
+      description: "userIdを取得する"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "ユーザー名"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        '200':
+          description: userId
+          content:
+            application/json:
+              schema:
+                id:
+                  type: "integer"
+                  format: "int64"
+  /api/users/session/{username}:
+    get:
+      summary: get session_times
+      description: "session_timesを更新し、取得する"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "ユーザー名"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        '200':
+          description: session_times
+          content:
+            application/json:
+              schema:
+                session_times:
+                  type: "integer"
+                  format: "int64"
   /api/words/{word}:
     get:
       summary: get word
@@ -68,6 +108,45 @@ paths:
         responses:
           '201':
             description: word meaning
+  /api/conversations/{userid}/{session_times}:
+      get:
+        summary: get  conversations history
+        description: "userに紐づく、userの会話履歴を取得するAPI"
+        parameters:
+          - name: "userid"
+            in: "path"
+            description: "取得したいuserのID"
+            required: true
+            schema:
+              type: "integer"
+              format: "int64"
+          - name: "session_times"
+            in: "path"
+            description: "セッション回数"
+            required: true
+            schema:
+              type: "integer"
+              format: "int64"
+        responses:
+          '200':
+            description: conversations history
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int64"
+                      context:
+                        type: "string"
+                      conversation_times:
+                        type: "integer"
+                        format: "int64"
+                      gpt_flag:
+                        type: boolean
   /api/conversations/{userid}:
       get:
         summary: get  conversations history
