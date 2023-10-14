@@ -7,7 +7,7 @@ class Api::ConversationsController < ApplicationController
     end
 
     def create
-        ConversationHistory.create(userid: params[:userid], context:params[:context], conversation_times:0, gpt_flag:false)
+        ConversationHistory.create(userid: params[:userid], context:params[:context], conversation_times:params[:conversation_times], session_times:params[:session_times],gpt_flag:false)
 
         word_create(params[:context])
         client = OpenAI::Client.new(access_token: ENV['OPENAI_ACCESS_TOKEN'])
@@ -21,10 +21,10 @@ class Api::ConversationsController < ApplicationController
             max_tokens: 200,  # 応答の長さを指定
         },
         )
-        ConversationHistory.create(userid: params[:userid], context:response.dig("choices", 0, "message", "content"), conversation_times:0, gpt_flag:true)
+        ConversationHistory.create(userid: params[:userid], context:response.dig("choices", 0, "message", "content"), conversation_times:params[:conversation_times], session_times:params[:session_times], gpt_flag:true)
         word_create(response.dig("choices", 0, "message", "content"))
         respond_to do |format|
-            format.json { render json: { response: response.dig("choices", 0, "message", "content") } }
+            format.json { render json: { response: response.dig("choices", 0, "message", "content") ,conversation_times:params[:conversation_times]} }
         end
     end
 

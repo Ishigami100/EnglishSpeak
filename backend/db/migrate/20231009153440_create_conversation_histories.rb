@@ -3,6 +3,7 @@ class CreateConversationHistories < ActiveRecord::Migration[7.0]
     create_table :conversation_histories do |t|
       t.integer :userid
       t.text :context
+      t.integer :session_times
       t.integer :conversation_times
       t.boolean :gpt_flag
       t.timestamps

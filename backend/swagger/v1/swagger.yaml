@@ -117,6 +117,12 @@ paths:
                   context:
                     type: "string"
                     example: "Hello.What's your favorite sports?"
+                  conversation_times:
+                    type: "integer"
+                    example: "1"
+                  session_times:
+                    type: "integer"
+                    example: "1"
         responses:
           '200':
             description: conversations
